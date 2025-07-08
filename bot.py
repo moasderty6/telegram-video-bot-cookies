@@ -11,12 +11,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("أرسل رابط الفيديو وسأقوم بتنزيله لك!")
 
 async def download_video(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    import shutil
+shutil.copy('/etc/secrets/cookies.txt', 'cookies.txt')
     url = update.message.text.strip()
     ydl_opts = {
         'outtmpl': 'downloads/video.%(ext)s',
         'max_filesize': 50*1024*1024,
         'format': 'best',
-        'cookiefile': '/etc/secrets/cookies.txt',
+        'cookiefile': 'cookies.txt',
     }
     os.makedirs('downloads', exist_ok=True)
     try:
