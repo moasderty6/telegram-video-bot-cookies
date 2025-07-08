@@ -1,1 +1,1 @@
-# telegram-video-bot-cookies
+# Telegram Video Downloader Bot with Instagram Cookies Support
