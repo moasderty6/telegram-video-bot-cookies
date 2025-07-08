@@ -12,7 +12,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def download_video(update: Update, context: ContextTypes.DEFAULT_TYPE):
     import shutil
-shutil.copy('/etc/secrets/cookies.txt', 'cookies.txt')
+    try:
+        shutil.copy('/etc/secrets/cookies.txt', 'cookies.txt')
+    except Exception as e:
+        await update.message.reply_text(f"⚠️ خطأ أثناء نسخ الكوكيز: {e}")
+        return
+
     url = update.message.text.strip()
     ydl_opts = {
         'outtmpl': 'downloads/video.%(ext)s',
